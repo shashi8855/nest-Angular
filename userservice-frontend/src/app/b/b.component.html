@@ -1,0 +1,49 @@
+<table mat-table [dataSource]="userData" class="mat-elevation-z8 pdf-document" *ngIf="table">
+    <ng-container matColumnDef="UserId">
+        <th mat-header-cell *matHeaderCellDef> User ID </th>
+        <td mat-cell *matCellDef="let element"> {{ element.id }} </td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let element"> {{ element.email }} </td>
+    </ng-container>
+    <ng-container matColumnDef="mobile">
+        <th mat-header-cell *matHeaderCellDef> Number </th>
+        <td mat-cell *matCellDef="let element"> {{ element.phone_number }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef> Address </th>
+        <td mat-cell *matCellDef="let element"> {{ element.address }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-raised-button (click)="onUpdateUser(element.id)">Update</button>
+            &nbsp;
+            <button mat-raised-button (click)="onDeleteUser(element.id)">Delete</button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<div *ngIf="userData.length === 0 && table" class="d-flex justify-content-center">
+    No Data Available
+</div>
+
+<div *ngIf="!table">
+    <button mat-flat-button color="accent" (click)="onGeneratepdf()">Generate PDF</button>
+    <app-d [pdfData]="pdfData"></app-d>
+    &nbsp;
+    <button mat-raised-button (click)="onViewPDF()">View PDF</button>
+    &nbsp;
+    <app-e></app-e>
+</div>

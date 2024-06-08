@@ -1,0 +1,18 @@
+<div class="form-container">
+    <h5>{{title}} User</h5>
+    <form #userForm="ngForm">
+        <label for="name">Name</label>
+        <input [(ngModel)]="userName" name="userName" id="name" type="text" class="input-field" required>
+
+        <label for="email">Email</label>
+        <input [(ngModel)]="userEmail" name="userEmail" id="email" type="email" class="input-field" required>
+
+        <label for="mobile">Mobile</label>
+        <input [(ngModel)]="mobileNumber" name="mobileNumber" id="mobile" type="text" class="input-field" maxlength="10"
+            required>
+        <label for="address">Address</label>
+        <textarea [(ngModel)]="address" name="address" id="address" class="input-field" required></textarea>
+        <button mat-raised-button (click)="postUser()">{{title}} User</button>
+        <button mat-raised-button (click)="resetFrom()" *ngIf="title === 'Update'" style="margin-top: 5px;">Cancel</button>
+    </form>
+</div>
